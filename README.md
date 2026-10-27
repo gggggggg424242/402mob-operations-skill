@@ -1,11 +1,15 @@
-# 402Mob operations skill
+# 402Mob agent skills
 
-This repository contains the `402mob-operations` Codex skill. It documents the currently implemented 402Mob service, including its Base x402 payment flows, headless merchant API, MCP tools, scoped operator access, recovery behavior, and deployment.
+This repository contains two 402Mob skills:
 
-Install by cloning this repository into your Codex skills directory:
+- `402mob-operations` documents the service implementation for repository work and operational questions.
+- `evidence-contact-artifact-buyer` teaches an agent to discover merchant offers, resolve versions, and purchase prepared artifacts through the live MCP server.
+
+Install either skill by cloning this repository and copying the corresponding directory (or the root `SKILL.md`) into your agent's skill directory.
 
 ```sh
-git clone https://github.com/gggggggg424242/402mob-operations-skill.git "${CODEX_HOME:-$HOME/.codex}/skills/402mob-operations"
+git clone https://github.com/gggggggg424242/402mob-operations-skill.git
+cp -R 402mob-operations-skill/evidence-contact-artifact-buyer "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
-The skill is maintained alongside the [402Mob service](https://evidence.contact/). Its repository code and the live `/v1/capabilities` endpoint remain authoritative when implementation changes.
+The buyer skill connects to `https://evidence.contact/mcp`. The live [`/v1/capabilities`](https://evidence.contact/v1/capabilities) endpoint is authoritative for available tools. The skill describes prepared artifacts, which are stored before purchase; it does not imply dynamic seller execution, escrow, refunds, or guaranteed work quality.
