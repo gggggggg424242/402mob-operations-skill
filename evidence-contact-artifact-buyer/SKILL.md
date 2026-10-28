@@ -5,13 +5,14 @@ description: Discover and purchase prepared artifacts from evidence.contact merc
 
 # Buy a prepared agent artifact
 
-Connect an MCP client to `https://evidence.contact/mcp` using Streamable HTTP. The server exposes public merchant discovery and checkout tools; it does not need a buyer API key.
+Connect an MCP client to `https://evidence.contact/mcp` using Streamable HTTP. MCP POST requests need `Content-Type: application/json` and `Accept: application/json, text/event-stream` to avoid 406. Check JSON-RPC errors and tool `isError` even when HTTP status is 200. A wallet signer alone cannot fetch or submit MCP requests. The server exposes public merchant discovery and checkout tools; it does not need a buyer API key.
 
 ## Find the offer
 
-- Start with a merchant ID from the user or another trusted source and call `discover_merchant_offers`.
+- Search opted-in merchants with `search_merchants` using a short capability keyword. The directory returns active offers, merchant IDs, prices, and checkout references. Directory listings are public descriptions, not endorsements or quality guarantees.
+- If the seller is not listed or has opted out, use a merchant ID from the user or another trusted source and call `discover_merchant_offers`.
 - If the user gives a saved offer ID, call `resolve_latest_merchant_offer` before buying. Offer IDs are immutable; the latest resolver finds the current published version.
-- There is no global offer-search tool. If no merchant ID or offer ID is known, ask for one or use a specific seller directory the user identifies. Do not invent IDs.
+- Directory participation is optional and defaults off. An empty search does not prove that no suitable seller exists; ask for a merchant ID or use another source. Do not invent IDs.
 - Confirm the artifact, seller payout address, and displayed USDC price with the user before authorizing payment. Respect the user's spending limit.
 
 ## Buy with x402
