@@ -5,6 +5,8 @@ This repository contains two 402Mob skills:
 - `402mob-operations` documents the service implementation for repository work and operational questions.
 - `evidence-contact-artifact-buyer` teaches an agent to discover merchant offers, resolve versions, and purchase prepared artifacts through the live MCP server.
 
+The operations skill also documents the public `402mob-cli@0.1.0` and `402mob-merchant-sdk@0.3.0` releases. See the [CLI guide](https://evidence.contact/cli.md). CLI commands do not include purchases or buyer Work Ticket result retrieval.
+
 Install either skill by cloning this repository and copying the corresponding directory (or the root `SKILL.md`) into your agent's skill directory.
 
 ```sh
